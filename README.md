@@ -1,4 +1,4 @@
-# CodySnippets - Hacktoberfest 2023
+# CodySnippets - Hacktoberfest 2023 🎉🙌
 🚀 Welcome to CodySnippets - Your Code Sharing Community 🚀
 
 CodySnippets is an open-source platform designed to facilitate the sharing, discovery, and collaboration of code snippets and programming tips. Whether you're a seasoned developer looking to share your expertise or a newcomer seeking solutions, CodySnippets provides a vibrant ecosystem for all levels of programmers.
@@ -10,10 +10,6 @@ CodySnippets is an open-source platform designed to facilitate the sharing, disc
 - Customize your coding experience with syntax highlighting and tagging.
 - Easily integrate code snippets into your projects.
 
-
-
-
-
 ## Tech Stack 🛠
 We will make this project with following tech stack:
 * Next JS
@@ -22,7 +18,7 @@ We will make this project with following tech stack:
 * MongoDB
 * Vercel (For Hosting)
 
-## Detailed Features:
+## Detailed Roadmap 🗺
 We will divide the features/tasks in two parts: front-end and back-end.
 ### Front-End:
 - [ ] Homepage
@@ -34,13 +30,12 @@ We will divide the features/tasks in two parts: front-end and back-end.
 #### User Dashboard:
 - [ ] User can see All of uploaded Code Snippets
 - [ ] Analytics of each Code Snippet
-- [ ] 
 
 
 
 ### Back-End:
 ### API Endpoints:
-#### Auth
+#### Auth:
 - [ ] User Authentication
   
 #### Code Snippets CRUD:
