@@ -1,34 +1,73 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CodySnippets - Hacktoberfest 2023
+🚀 Welcome to CodySnippets - Your Code Sharing Community 🚀
 
-## Getting Started
+CodySnippets is an open-source platform designed to facilitate the sharing, discovery, and collaboration of code snippets and programming tips. Whether you're a seasoned developer looking to share your expertise or a newcomer seeking solutions, CodySnippets provides a vibrant ecosystem for all levels of programmers.
 
-First, run the development server:
+## Key Features 🌟
+- Share and explore code snippets in various programming languages.
+- Gain insights and learn best practices from the community's collective knowledge.
+- Collaborate with fellow developers through comments and discussions.
+- Customize your coding experience with syntax highlighting and tagging.
+- Easily integrate code snippets into your projects.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+## Tech Stack 🛠
+We will make this project with following tech stack:
+* Next JS
+* Tailwind CSS
+* Daisy UI
+* MongoDB
+* Vercel (For Hosting)
 
-To learn more about Next.js, take a look at the following resources:
+## Detailed Features:
+We will divide the features/tasks in two parts: front-end and back-end.
+### Front-End:
+- [ ] Homepage
+- [ ] Explore (For Exploring different trending snippets)
+- [ ] Categories page for showing different categories
+- [ ] Single Code snippets show page
+- [ ] Dashboard for managing user code snippets
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### User Dashboard:
+- [ ] User can see All of uploaded Code Snippets
+- [ ] Analytics of each Code Snippet
+- [ ] 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Back-End:
+### API Endpoints:
+#### Auth
+- [ ] User Authentication
+  
+#### Code Snippets CRUD:
+- [ ] Add New Code Snippet
+- [ ] Read Single Code Snippet
+- [ ] Edit Existing Code Snippets
+- [ ] Delete Existing Code Snippet
+- [ ] Comment on a Code Snippet
+- [ ] Upvote/downvote Code snippet
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  
+#### Trending/Explore:
+- [ ] Trending Code Snippets Alogrithm
+- [ ] Show Code Snippets by category
+  
+#### Add to Favourites:
+- [ ] Add Code Snippet to Favourites
+- [ ] Get Favourite Code Snippets
+
+#### Search Functionality:
+- [ ] Search code snippets (by name, programming language, tag)
+
+## Contributing 👏
+Contributions are welcome!
+
+See `contributing.md` for ways to get started with your first contribution.
+
+Happy Coding! 💻🚀
+
+
