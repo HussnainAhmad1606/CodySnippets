@@ -21,11 +21,13 @@ We will make this project with following tech stack:
 ## Detailed Roadmap 🗺
 We will divide the features/tasks in two parts: front-end and back-end.
 ### Front-End:
+- [x] Basic Layout of pages
 - [ ] Homepage
 - [ ] Explore (For Exploring different trending snippets)
 - [ ] Categories page for showing different categories
 - [ ] Single Code snippets show page
 - [ ] Dashboard for managing user code snippets
+- [ ] Login/Signup Pages
 
 #### User Dashboard:
 - [ ] User can see All of uploaded Code Snippets
@@ -36,7 +38,7 @@ We will divide the features/tasks in two parts: front-end and back-end.
 ### Back-End:
 ### API Endpoints:
 #### Auth:
-- [ ] User Authentication
+- [x] User Authentication
   
 #### Code Snippets CRUD:
 - [ ] Add New Code Snippet
