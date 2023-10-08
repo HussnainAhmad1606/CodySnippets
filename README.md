@@ -41,24 +41,24 @@ We will divide the features/tasks in two parts: front-end and back-end.
 - [x] User Authentication
   
 #### Code Snippets CRUD:
-- [ ] Add New Code Snippet
-- [ ] Read Single Code Snippet
-- [ ] Edit Existing Code Snippets
-- [ ] Delete Existing Code Snippet
-- [ ] Comment on a Code Snippet
-- [ ] Upvote/downvote Code snippet
+- [x] Add New Code Snippet
+- [x] Read Single Code Snippet
+- [x] Edit Existing Code Snippets
+- [x] Delete Existing Code Snippet
+- [x] Comment on a Code Snippet
+- [x] Upvote/downvote Code snippet
 
   
 #### Trending/Explore:
-- [ ] Trending Code Snippets Alogrithm
-- [ ] Show Code Snippets by category
+- [x] Trending Code Snippets Alogrithm
+- [x] Show Code Snippets by category
   
 #### Add to Favourites:
-- [ ] Add Code Snippet to Favourites
-- [ ] Get Favourite Code Snippets
+- [x] Add Code Snippet to Favourites
+- [x] Get Favourite Code Snippets
 
 #### Search Functionality:
-- [ ] Search code snippets (by name, programming language, tag)
+- [x] Search code snippets (by name, programming language, tag)
 
 ## Contributing 👏
 Contributions are welcome!
