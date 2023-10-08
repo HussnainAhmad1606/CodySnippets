@@ -9,20 +9,27 @@ const handler = async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
         console.log(req.body)
-        let user = new User({
-            email: req.body.email,
-            username: req.body.username,
-            password: hashedPassword,
-            isBlocked: req.body.isBlocked,
-            isAdmin: req.body.isAdmin
-        })
-    
-        await user.save();
-        return res.status(200).json({type: "success", message: "user created successfully" })
+        try {
+
+            let user = new User({
+                email: req.body.email,
+                username: req.body.username,
+                password: hashedPassword,
+                isBlocked: req.body.isBlocked,
+                isAdmin: req.body.isAdmin
+            })
+            
+            await user.save();
+            return res.status(200).json({type: "success", message: "user created successfully" })
+        }
+        catch(err) {
+            return res.status(200).json({type: "error", message: "ERROR", errorCode: err.code })
+            
+        }
     }
     
     else {
-        return res.status(200).json({type: "error", message: "ERROR" })
+        return res.status(200).json({type: "error", message: "ERROR: Not Allowed" })
     }
 }
 
