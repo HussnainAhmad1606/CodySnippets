@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.18",
     "autoprefixer": "10.4.16",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.2",
