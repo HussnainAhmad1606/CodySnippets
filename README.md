@@ -23,10 +23,10 @@ We will divide the features/tasks in two parts: front-end and back-end.
 ### Front-End:
 - [x] Basic Layout of pages
 - [x] Homepage
-- [x] Explore (For Exploring different trending snippets)
+- [ ] Explore (For Exploring different trending snippets)
 - [x] Categories page for showing different categories
-- [x] Single Code snippets show page
-- [x] Dashboard for managing user code snippets
+- [ ] Single Code snippets show page
+- [ ] Dashboard for managing user code snippets
 - [x] Login/Signup Pages
 
 #### User Dashboard:
@@ -45,20 +45,20 @@ We will divide the features/tasks in two parts: front-end and back-end.
 - [x] Read Single Code Snippet
 - [x] Edit Existing Code Snippets
 - [x] Delete Existing Code Snippet
-- [x] Comment on a Code Snippet
-- [x] Upvote/downvote Code snippet
+- [ ] Comment on a Code Snippet
+- [ ] Upvote/downvote Code snippet
 
   
 #### Trending/Explore:
-- [x] Trending Code Snippets Alogrithm
-- [x] Show Code Snippets by category
+- [ ] Trending Code Snippets Alogrithm
+- [ ] Show Code Snippets by category
   
 #### Add to Favourites:
-- [x] Add Code Snippet to Favourites
-- [x] Get Favourite Code Snippets
+- [ ] Add Code Snippet to Favourites
+- [ ] Get Favourite Code Snippets
 
 #### Search Functionality:
-- [x] Search code snippets (by name, programming language, tag)
+- [ ] Search code snippets (by name, programming language, tag)
 
 ## Contributing 👏
 Contributions are welcome!
