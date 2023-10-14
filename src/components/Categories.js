@@ -44,7 +44,7 @@ const Categories = () => {
             img: '/HTML.png',
         }
     ]
-    const Categories = categories.map(category => <CategoryCard key={category.name} name={category.name} img={category.img} />)
+    const Categories = categories.map(category => <CategoryCard key={category.id} name={category.name} img={category.img} />)
     return (
         <div>
             <h1 className='text-4xl my-8 text-center'>Categories</h1>
