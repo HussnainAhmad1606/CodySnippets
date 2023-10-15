@@ -1,7 +1,7 @@
 # CodySnippets - Hacktoberfest 2023 🎉🙌
 🚀 Welcome to CodySnippets - Your Code Sharing Community 🚀
 
-CodySnippets is an open-source platform designed to facilitate the sharing, discovery, and collaboration of code snippets and programming tips. Whether you're a seasoned developer looking to share your expertise or a newcomer seeking solutions, CodySnippets provides a vibrant ecosystem for all levels of programmers. Ahmed Shafique Revork this repository
+CodySnippets is an open-source platform designed to facilitate the sharing, discovery, and collaboration of code snippets and programming tips. Whether you're a seasoned developer looking to share your expertise or a newcomer seeking solutions, CodySnippets provides a vibrant ecosystem for all levels of programmers. 
 
 ## Key Features 🌟
 - Share and explore code snippets in various programming languages.
