@@ -3,10 +3,13 @@ import Link from "next/link";
 import React, { useState } from "react";
 import "../css/login.css";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
 function Signup() {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
   const createAccount = () => {
     console.log("Creating account...");
@@ -65,6 +68,7 @@ function Signup() {
               progress: undefined,
               theme: "colored",
             });
+            router.push("/");
           }
           else {
             toast.error(data.message, {
