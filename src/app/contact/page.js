@@ -15,7 +15,7 @@ export default function Home() {
 
             <div className="border-b border-gray-900/10 pb-12">
               <div className="mt-5 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                <div className="sm:col-span-3">
+                <div className="sm:col-span-3 mx-5">
                   <label
                     htmlFor="first-name"
                     className="block text-sm font-medium leading-6"
@@ -34,7 +34,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="sm:col-span-3">
+                <div className="sm:col-span-3 mx-5">
                   <label
                     htmlFor="last-name"
                     className="block text-sm font-medium leading-6"
@@ -53,7 +53,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="sm:col-span-4">
+                <div className="sm:col-span-4 mx-5">
                   <label
                     htmlFor="email"
                     className="block text-sm font-medium leading-6"
@@ -75,7 +75,7 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div className="col-span-full">
+              <div className="col-span-full mx-5">
                 <label
                   htmlFor="message"
                   className="block text-sm font-medium leading-6"

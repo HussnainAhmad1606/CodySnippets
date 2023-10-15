@@ -2,9 +2,12 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "../css/login.css";
+import { useRouter } from "next/navigation";
+
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
   const logintoAccount = () => {
    if (username == "" || password == "") {
     toast.error("Fill all fields to create your account.", {
@@ -43,6 +46,7 @@ function Login() {
               progress: undefined,
               theme: "colored",
             });
+            router.push("/");
           }
           else {
             toast.error(data.message, {
