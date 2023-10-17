@@ -5,6 +5,7 @@ import HeroSection from "@/components/HeroSection";
 
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
+import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -31,6 +32,8 @@ export default function RootLayout({ children }) {
         <Navbar />
 
         {children}
+
+        <Footer/>
       </body>
     </html>
   );

@@ -24,6 +24,8 @@ function Navbar() {
       </li>
       <li><Link href={"/about"}>About</Link></li>
       <li><Link href={"/contact"}>Contact</Link></li>
+      <li><Link href={"/contributors"}>Contributors</Link></li>
+
       </ul>
     </div>
     <Link href={"/"} className="btn btn-ghost normal-case text-xl">CodySnippets</Link>
@@ -44,6 +46,7 @@ function Navbar() {
       </li>
       <li><Link href={"/about"}>About</Link></li>
       <li><Link href={"/contact"}>Contact</Link></li>
+      <li><Link href={"/contributors"}>Contributors</Link></li>
     </ul>
   </div>
   <div className="navbar-end">

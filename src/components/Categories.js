@@ -21,7 +21,9 @@ const Categories = () => {
   
     const CATEGORIES = categories.map(category => <CategoryCard key={category.name} name={category.name} description={category.description} slug={category.slug} image={category.image} />)
     return (
-        <div>
+        <div style={{
+            minHeight: "80vh"
+        }}>
             <h1 className='text-4xl my-8 text-center font-bold'>Categories</h1>
             <p className='text-center'>Check out some of our categories below!</p>
             {isLoading?<center><span className="my-10 loading loading-spinner loading-lg"></span></center>: ""}
