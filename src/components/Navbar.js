@@ -11,18 +11,9 @@ function Navbar() {
       </label>
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
       <li><Link href={"/"}>Home</Link></li>
-      <li><Link href={"/trending"}>Trending</Link></li>
-      <li tabIndex={0}>
-        <details>
-          <summary>Categories</summary>
-          <ul className="p-2">
-            <li><Link href={"/categories"}>Web Development</Link></li>
-            <li><Link href={"/categories"}>Machine Learning</Link></li>
-            <li><Link href={"/categories"}>More.....</Link></li>
-          </ul>
-        </details>
-      </li>
-      <li><Link href={"/about"}>About</Link></li>
+      <li><Link href={"/explore"}>Explore</Link></li>
+      <li><Link href={"/trending"}>Trending</Link></li> 
+      <li><Link href={"/categories"}>Categories</Link></li>
       <li><Link href={"/contact"}>Contact</Link></li>
       <li><Link href={"/contributors"}>Contributors</Link></li>
 
@@ -32,26 +23,37 @@ function Navbar() {
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><Link href={"/"}>Home</Link></li>
-      <li><Link href={"/trending"}>Trending</Link></li>
-      <li tabIndex={0}>
-        <details>
-          <summary>Categories</summary>
-          <ul className="p-2">
-          <li><Link href={"/categories"}>Web Development</Link></li>
-            <li><Link href={"/categories"}>Machine Learning</Link></li>
-            <li><Link href={"/categories"}>More.....</Link></li>
-          </ul>
-        </details>
-      </li>
-      <li><Link href={"/about"}>About</Link></li>
+    <li><Link href={"/"}>Home</Link></li>
+      <li><Link href={"/explore"}>Explore</Link></li>
+      <li><Link href={"/trending"}>Trending</Link></li> 
+      <li><Link href={"/categories"}>Categories</Link></li>
       <li><Link href={"/contact"}>Contact</Link></li>
       <li><Link href={"/contributors"}>Contributors</Link></li>
     </ul>
   </div>
+
   <div className="navbar-end">
+
     <Link href={"/login"} className="mx-2 btn-primary btn">Login</Link>
     <Link href={"/signup"} className="btn-primary btn">Signup</Link>
+   
+
+    <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost avatar">
+        <div className="w-10 rounded-full">
+          <img src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/00/008337556bc2a8f594653f135b5fb120766e5aba_full.jpg" />
+        </div>
+      </label>
+      <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+        <li>
+          <Link href={"/profile"} className="justify-between">
+            My Profile
+            <span className="badge">New</span>
+          </Link>
+        </li>
+        <li><button>Logout</button></li>
+      </ul>
+    </div>
   </div>
 </div>
   )

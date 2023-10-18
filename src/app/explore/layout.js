@@ -5,8 +5,8 @@ import HeroSection from '@/components/HeroSection'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'About - CodySnippets',
-  description: 'About CodySnippets',
+  title: 'Explore - CodySnippets',
+  description: 'Explore CodySnippets',
 }
 
 export default function RootLayout({ children }) {
