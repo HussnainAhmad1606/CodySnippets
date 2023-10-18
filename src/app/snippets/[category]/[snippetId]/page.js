@@ -20,6 +20,7 @@ import { BiSolidCategory } from "react-icons/bi";
 export default function Home({ params }) {
   const [snippet, setSnippet] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [snippetCode, setSnippetCode] = useState(``);
   const { snippetId } = params;
 
   useEffect(() => {
@@ -34,6 +35,9 @@ export default function Home({ params }) {
       .then((data) => {
         console.log(data.snippet);
         setSnippet(data.snippet);
+        let code = data.snippet.code;
+        let formattedCode = code.replace(/\\n/g, '\n')
+        setSnippetCode(formattedCode);
         setIsLoading(false);
         Prism.highlightAll();
       });
@@ -45,6 +49,7 @@ export default function Home({ params }) {
       style={{
         minHeight: "100vh",
       }}
+     
     >
 
       {/* Breadcrumb start */}
@@ -74,7 +79,9 @@ export default function Home({ params }) {
       <h1 className="my-10 text-4xl text-center font-bold">{snippet.title}</h1>
      
 
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+{
+  isLoading?"":(
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
         <div className="stats shadow">
           <div className="stat flex justify-center items-center flex-col">
             <div className="stat-value">
@@ -109,18 +116,22 @@ export default function Home({ params }) {
           </div>
         </div>
       </div>
+  )
+}
 
       {isLoading ? (
         <div className="flex justify-center items-center h-screen">
           <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white-900"></div>
         </div>
       ) : (
-        <div className="flex justify-center items-center ">
+        <div
+        ref={(html) => html && Prism.highlightAllUnder(html)}
+        className="flex justify-center items-center ">
           <pre>
             <code
-              className={`my-10 language-${snippet.language.toLowerCase()}`}
+              className={`my-10 language-${snippet.language?.toLowerCase()}`}
             >
-              {snippet.code}
+              {snippetCode}
             </code>
           </pre>
         </div>

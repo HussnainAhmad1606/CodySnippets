@@ -13,7 +13,6 @@ const CodeSnippet = (props) => {
         <div className='flex flex-col justify-center items-center my-8'>
           <div className='w-full flex justify-between items-center'>
             <div className='flex justify-center items-center'>
-            <img src="/HTML.png" alt="HTML" className='w-8 rounded-full' />
             <p>Posted by: <span className='font-bold'>{props.author}</span> </p>
             </div>
             <p className='font-thin'>({new Date(props.createdAt).toLocaleString()})</p>

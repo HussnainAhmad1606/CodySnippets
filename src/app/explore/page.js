@@ -8,7 +8,9 @@ export default function Home() {
  
   
   return (
-  <div className='flex justify-center items-center flex-col'>
+  <div style={{
+    minHeight: "70vh"
+  }} className='flex justify-center items-center flex-col'>
     <p className='my-5 font-bold text-4xl'>Explore CodySnippets</p>
    <SnippetContainer/>
   </div>
