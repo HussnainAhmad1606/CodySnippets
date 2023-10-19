@@ -34,8 +34,8 @@ function Navbar() {
 
   <div className="navbar-end">
 
-    <Link href={"/login"} className="mx-2 btn-primary btn">Login</Link>
-    <Link href={"/signup"} className="btn-primary btn">Signup</Link>
+    <Link href={"/login"} className="hoverffect mx-2 btn-primary btn">Login</Link>
+    <Link href={"/signup"} className="hoverffect btn-primary btn">Signup</Link>
    
 
     <div className="dropdown dropdown-end">
