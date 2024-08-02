@@ -95,6 +95,7 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <button className="hoverffect mx-2 btn-primary btn">Sumbit</button>
         </div>
       </form>
     </>

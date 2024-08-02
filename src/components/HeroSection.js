@@ -14,7 +14,7 @@ function HeroSection() {
           <p className="mb-5">
           A comprehensive resource for code snippets across various programming languages
           </p>
-          <Link href="/trending" className="btn btn-primary">Explore</Link>
+          <Link href="/trending" className="hoverffect btn btn-primary">Explore</Link>
         </div>
       </div>
     </div>
