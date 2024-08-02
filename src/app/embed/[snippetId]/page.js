@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
-
+import "@/css/embed.css"
 
 import "prismjs/components/prism-markup-templating";
 // Language Syntax Hightlighting
@@ -85,8 +85,8 @@ const EmbedSnippet = ({params}) => {
   }
 
   return (
-    <div   ref={(html) => html && Prism.highlightAllUnder(html)} className="flex justify-center items-center">
-      <pre>
+    <div id='main'   ref={(html) => html && Prism.highlightAllUnder(html)} className="w-full h-full flex justify-center items-center ">
+      <pre className='w-full'>
         <code className={`my-10 language-${snippet.language?.toLowerCase()}`}>
           {snippetCode}
         </code>

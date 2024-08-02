@@ -1,0 +1,11 @@
+footer {
+    display: none !important;
+}
+
+* {
+    margin: 0;
+}
+
+.code-toolbar {
+    width: 100%;
+}
