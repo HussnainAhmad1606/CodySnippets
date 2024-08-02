@@ -2,7 +2,8 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import "../css/login.css";
-import { toast } from "react-toastify";
+import  toast  from 'react-hot-toast';
+
 import { useRouter } from "next/navigation";
 
 function Signup() {
@@ -29,7 +30,7 @@ function Signup() {
     alert("Username should not include a space.")
   }
    else {
-    fetch(`${process.env.NEXT_PUBLIC_URL}/api/auth/signup`, {
+    fetch(`/api/auth/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

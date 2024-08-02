@@ -1,7 +1,18 @@
+"use client"
+import { useUserStore } from '@/store/store'
 import Link from 'next/link'
 import React from 'react'
+import { toast } from 'react-hot-toast';
 
 function Navbar() {
+  const {isLogin, SetIsLogin} = useUserStore();
+
+  const logout = () => {
+    SetIsLogin(false);
+    localStorage.removeItem("token");
+    localStorage.removeItem("refresh_token");
+    toast.success("Account Logged out Successfully");
+  }
   return (
     <div className="navbar bg-base-100">
   <div className="navbar-start">
@@ -34,11 +45,11 @@ function Navbar() {
 
   <div className="navbar-end">
 
-    <Link href={"/login"} className="mx-2 btn-primary btn">Login</Link>
-    <Link href={"/signup"} className="btn-primary btn">Signup</Link>
    
 
-    <div className="dropdown dropdown-end">
+   {
+    isLogin?(
+      <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost avatar">
         <div className="w-10 rounded-full">
           <img src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/avatars/00/008337556bc2a8f594653f135b5fb120766e5aba_full.jpg" />
@@ -51,9 +62,16 @@ function Navbar() {
             <span className="badge">New</span>
           </Link>
         </li>
-        <li><button>Logout</button></li>
+        <li><button onClick={logout}>Logout</button></li>
       </ul>
     </div>
+    ):(
+     <>
+    <Link href={"/login"} className="mx-2 btn-primary btn">Login</Link>
+    <Link href={"/signup"} className="btn-primary btn">Signup</Link>
+     </> 
+    )
+   }
   </div>
 </div>
   )

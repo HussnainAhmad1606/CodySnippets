@@ -1,6 +1,6 @@
 
-import User from "../../../models/User"
-import connectDB from "../../../middlewares/connectDB";
+import User from "@/models/User"
+import connectDB from "@/middlewares/connectDB";
 import bcrypt from "bcryptjs";
 const handler = async (req, res) => {
     if (req.method == "POST") {

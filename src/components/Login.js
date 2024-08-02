@@ -1,10 +1,12 @@
 "use client"
 import React, { useState } from "react";
-import { toast } from "react-toastify";
+import  toast  from 'react-hot-toast';
 import "../css/login.css";
 import { useRouter } from "next/navigation";
+import { useUserStore } from "@/store/store";
 
 function Login() {
+  const {SetIsLogin, SetUsername} = useUserStore();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -22,7 +24,7 @@ function Login() {
       });
    }
    else {
-    fetch(`${process.env.NEXT_PUBLIC_URL}/api/auth/login`, {
+    fetch(`/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,16 +38,11 @@ function Login() {
       .then((data) => {
        
           if (data.type == "success") {
-            toast.success(data.message, {
-              position: "top-center",
-              autoClose: 3000,
-              hideProgressBar: true,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "colored",
-            });
+            SetIsLogin(true);
+            SetUsername(username)
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("refresh_token", data.refreshToken);
+            toast.success(data.message);
             router.push("/");
           }
           else {
