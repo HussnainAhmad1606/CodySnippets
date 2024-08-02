@@ -5,6 +5,6 @@ export const useUserStore = create((set) => ({
   Email: "",
   isLogin: false,
   SetIsLogin: (newIsLogin) => set({ isLogin: newIsLogin }),
-  SetUsername: (newUsername) => set({username:newUsername}),
-  SetEmail: (newEmail) => set({ email:newEmail })
+  SetUsername: (newUsername) => set({Username:newUsername}),
+  SetEmail: (newEmail) => set({ Email:newEmail })
 }))

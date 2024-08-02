@@ -1,11 +1,34 @@
 "use client"
 import { useUserStore } from '@/store/store'
+import axios from 'axios';
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { toast } from 'react-hot-toast';
 
 function Navbar() {
-  const {isLogin, SetIsLogin} = useUserStore();
+  const {Username, SetUsername, isLogin, SetIsLogin} = useUserStore();
+
+
+  const verificationToken =async () => {
+
+    const req = await axios.post("/api/auth/verify", {
+      token: localStorage.getItem("token")
+    })
+
+    const res = await req.data;
+    console.log(res)
+
+    if (res.type == "success") {
+      SetIsLogin(true);
+      SetUsername(res.user.username);
+    }
+  }
+
+  useEffect(() => {
+    verificationToken();
+  }, [])
+  
+
 
   const logout = () => {
     SetIsLogin(false);
@@ -56,6 +79,7 @@ function Navbar() {
         </div>
       </label>
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+        <li>Hi, {Username}</li>
         <li>
           <Link href={"/profile"} className="justify-between">
             My Profile
