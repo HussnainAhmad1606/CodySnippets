@@ -4,11 +4,48 @@ import { useEffect, useState } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 
+
+import "prismjs/components/prism-markup-templating";
+// Language Syntax Hightlighting
+import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-python";
+import "prismjs/components/prism-c";
+import "prismjs/components/prism-java";
+import "prismjs/components/prism-cpp";
+import "prismjs/components/prism-typescript";
+import "prismjs/components/prism-csharp";
+import "prismjs/components/prism-css";
+import "prismjs/components/prism-cshtml";
+import "prismjs/components/prism-dart";
+import "prismjs/components/prism-nasm";
+import "prismjs/components/prism-go";
+import "prismjs/components/prism-jsx";
+import "prismjs/components/prism-kotlin";
+import "prismjs/components/prism-rust";
+import "prismjs/components/prism-tsx";
+import "prismjs/components/prism-ruby";
+import "prismjs/components/prism-arduino";
+import "prismjs/components/prism-swift";
+import "prismjs/components/prism-objectivec";
+import "prismjs/components/prism-docker";
+import "prismjs/components/prism-php";
+
+import "prismjs/plugins/toolbar/prism-toolbar.min.css";
+import "prismjs/plugins/toolbar/prism-toolbar.min";
+import "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min";
+import "@/css/prism-theme.css";
+import "@/css/custom-prism-theme.css";
+
+
+import { Ubuntu } from 'next/font/google'
+const roboto = Ubuntu({ subsets: ['latin'], weight: '400' })
+
+
 const EmbedSnippet = ({params}) => {
 //   const router = useRouter();
   const { snippetId } = params;
   const [snippet, setSnippet] = useState(null);
-  const [snippetCode, setSnippetCodeW] = useState(null);
+  const [snippetCode, setSnippetCode] = useState(null);
 
   useEffect(() => {
     if (snippetId) {
@@ -48,17 +85,19 @@ const EmbedSnippet = ({params}) => {
   }
 
   return (
-    <div className="flex justify-center items-center">
+    <div   ref={(html) => html && Prism.highlightAllUnder(html)} className="flex justify-center items-center">
       <pre>
         <code className={`my-10 language-${snippet.language?.toLowerCase()}`}>
-          {snippet.code}
+          {snippetCode}
         </code>
+        <p className={`float-right ${roboto.className}`}>Code by <a href='https://codysnippets.vercel.app/' target='_blank'>CodySnippets</a></p>
+
       </pre>
-      <div className="text-center mt-4">
-        <p>Embedded by Your Name</p>
-      </div>
+     
     </div>
   );
 };
+
+
 
 export default EmbedSnippet;
