@@ -4,6 +4,7 @@ import axios from 'axios';
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { toast } from 'react-hot-toast';
+import { FaSearch } from "react-icons/fa";
 
 function Navbar() {
   const {Username, SetUsername, SetUserId, UserId, isLogin, SetIsLogin} = useUserStore();
@@ -69,7 +70,7 @@ function Navbar() {
 
   <div className="navbar-end">
 
-   
+   <Link href={"/search"} className='bg-neutral p-3 rounded-xl'><FaSearch className='mx-2 text-2xl'/></Link>
 
    {
     isLogin?(
