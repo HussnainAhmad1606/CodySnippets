@@ -1,15 +1,14 @@
 "use client"
 import Link from 'next/link';
 import React, { useState } from 'react'
-import { FaArrowUp, FaArrowDown } from "react-icons/fa";
+import { BiComment } from 'react-icons/bi';
+import { FaArrowUp, FaArrowDown, FaStar, FaShare } from "react-icons/fa";
+import { TbArrowBigDown, TbArrowBigUp } from 'react-icons/tb';
 
 const CodeSnippet = (props) => {
   return (
     <div href={"/explore"} className="card card-side bg-base-100 shadow-xl w-[60vw] mx-auto flex items-center justify-center">
-        <div className='mx-8'>
-          <FaArrowUp className='my-4 text-2xl' id="like" />
-          <FaArrowDown className='text-2xl' id="dislike"/>
-        </div>
+       
         <div className='flex flex-col justify-center items-center my-8'>
           <div className='w-full flex justify-between items-center'>
             <div className='flex justify-center items-center'>
@@ -20,8 +19,64 @@ const CodeSnippet = (props) => {
           <Link href={`/snippets/${props.category.toLowerCase().replaceAll(" ", "-")}/${props.id}`} className='text-4xl my-8'>
             {props.title}
           </Link>
-          <div className='text-xl rounded-2xl leading-10'>
-          </div>
+          <div className="flex justify-between w-[120%] items-center ">
+        
+
+
+
+        {/* left side */}
+
+        <div className="flex justify-center items-center">
+        <div className="bg-gray-300 bg-opacity-0 p-1 rounded-3xl flex justify-center items-center border-none rounded-2xl bg-gray-300 bg-opacity-10">
+       
+
+              <button><TbArrowBigUp className="text-2xl" /></button>
+              <p className="mx-2">10</p>
+              <button><TbArrowBigDown className="text-2xl" /></button>
+          
+        </div>
+
+        <div className="bg-gray-300 bg-opacity-0 p-2 rounded-3xl flex justify-center items-center">
+          <details  onClick={()=>document.getElementById('comments').showModal()}  className="dropdown">
+            <summary className="btn btn-sm border-none rounded-2xl bg-gray-300 bg-opacity-10">
+              <BiComment className="text-2xl" />
+              <p>{10}</p>
+            </summary>
+           
+          </details>
+        </div>
+
+
+       
+        <div className="bg-gray-300 bg-opacity-0 p-2 rounded-3xl flex justify-center items-center">
+          <details className="dropdown">
+            <summary className="btn btn-sm border-none rounded-2xl bg-gray-300 bg-opacity-10">
+              <FaShare className="text-2xl" />
+              Share
+            </summary>
+            <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2">
+              <li>
+                <button>Copy URL</button>
+              </li>
+              <li>
+                <button>Embed Code</button>
+              </li>
+            </ul>
+          </details>
+        </div>
+    
+
+      
+
+
+        </div>
+
+
+
+
+      
+      
+      </div>
         </div>
       </div>
   )

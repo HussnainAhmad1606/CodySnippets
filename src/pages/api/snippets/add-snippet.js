@@ -1,7 +1,8 @@
 
 
-import CodeSnippet from "../../../models/CodeSnippet";
-import connectDB from "../../../middlewares/connectDB";
+import CodeSnippet from "@/models/CodeSnippet";
+import connectDB from "@/middlewares/connectDB";
+
 
 const handler = async (req, res) => {
 

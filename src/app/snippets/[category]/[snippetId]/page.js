@@ -3,14 +3,8 @@ import { useEffect, useState, useRef } from "react";
 import Prism from "prismjs";
 
 import { format } from "timeago.js";
-import { TbArrowBigDown } from "react-icons/tb";
-import { TbArrowBigDownFilled } from "react-icons/tb";
-
-import { TbArrowBigUp } from "react-icons/tb";
-import { TbArrowBigUpFilled } from "react-icons/tb";
-import { BiComment } from "react-icons/bi";
-import { FaShare } from "react-icons/fa";
-import { FaRegStar } from "react-icons/fa";
+import CommentCard from "@/components/CommentCard";
+import api from "@/utils/api";
 
 import "prismjs/components/prism-markup-templating";
 // Language Syntax Hightlighting
@@ -43,60 +37,167 @@ import "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min";
 import "@/css/prism-theme.css";
 import "@/css/custom-prism-theme.css";
 
-import Link from "next/link";
 
 // Importing Icons
 import { BsFillPersonFill } from "react-icons/bs";
 import { BiSolidTime } from "react-icons/bi";
 import { BsCodeSlash } from "react-icons/bs";
 import { BiSolidCategory } from "react-icons/bi";
+import {IoSend} from "react-icons/io5";
+import { TbArrowBigDown } from "react-icons/tb";
+import { TbArrowBigDownFilled } from "react-icons/tb";
+
+import { TbArrowBigUp } from "react-icons/tb";
+import { TbArrowBigUpFilled } from "react-icons/tb";
+import { BiComment } from "react-icons/bi";
+import { FaShare } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
+
+import { useUserStore } from "@/store/store";
+import { toast } from "react-hot-toast";
+import axios from "axios";
 
 export default function Home({ params }) {
   const [snippet, setSnippet] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [snippetCode, setSnippetCode] = useState(``);
+  const [isFavourite, setIsFavourite] = useState(false);
+  const [comments, setComments] = useState([]);
+  const [comment, setComment] = useState("");
+  const [link, setLink] = useState("");
   const { snippetId } = params;
   const codeRef = useRef(null);
   const [embedCode, setEmbedCode] = useState("");
+
+  const {UserId} = useUserStore();
+
   useEffect(() => {
     if (codeRef.current) {
       Prism.highlightAllUnder(codeRef.current);
     }
   }, [snippetCode]);
 
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(window.location.href);
+      toast.success('Link copied to clipboard!');
+  
+    } catch (err) {
+      toast.error('Failed to copy!');
+    }
+  };
+
   const generateEmbedCode = (snippetId) => {
     return `<iframe src="${window.location.origin}/embed/${snippetId}" width="600" height="400"></iframe>`;
   };
 
 
-  const handleGenerateEmbedCode = () => {
+  const handleGenerateEmbedCode = async() => {
     const code = generateEmbedCode(snippetId);
     setEmbedCode(code);
-    console.log(code)
+    try {
+      await navigator.clipboard.writeText(code);
+      toast.success('Embed Code copied to clipboard!');
+  
+    } catch (err) {
+      toast.error('Failed to make Embed code');
+    }
   };
 
+
+  const addComment = async() => {
+    const data = {
+      body: comment,
+      snippetId: snippetId
+    }
+
+  try {
+    const response = await api.post("/comments/add-comment", data);
+
+
+    if (response.data.type == "success") {
+      toast.success(response.data.message);
+    }
+    else {
+      toast.error(response.data.message);
+    }
+  }
+
+  catch(error) {
+    console.log(error.response.data.message)
+    toast.error(error.response.data.message)
+  }
+  }
+
+
+  const addToFavourite = async() => {
+    const data = {
+      userId: UserId,
+      snippetId: snippetId
+    }
+
+  try {
+    const response = await api.post("/favourites/add-to-favourite", data);
+
+
+    if (response.data.type == "success") {
+      toast.success(response.data.message);
+    }
+    else {
+      toast.error(response.data.message);
+    }
+  }
+
+  catch(error) {
+    console.log(error.response.data.message)
+    toast.error(error.response.data.message)
+  }
+  }
+const getSingleSnippet = async() => {
+  fetch(`/api/snippets/get-single-snippet`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ snippetId: snippetId, userId: UserId }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      setSnippet(data.snippet);
+      setIsFavourite(data.favourite);
+      let code = data.snippet.code;
+      let formattedCode = code.replace(/\\n/g, "\n");
+      setSnippetCode(formattedCode);
+      setIsLoading(false);
+      Prism.highlightAll();
+    });
+}
+
+
+const getComments = async() => {
+  const response = await axios.post("/api/comments/get-comments", {
+    snippetId: snippetId
+  })
+
+
+  if (response.data.type == "success") {
+    setComments(response.data.comments)
+  }
+  else {
+    toast.error(response.data.message)
+  }
+}
   useEffect(() => {
-    console.log(JSON.stringify(Object.keys(Prism.languages)));
-    fetch(`/api/snippets/get-single-snippet`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ snippetId: snippetId }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.snippet);
-        setSnippet(data.snippet);
-        let code = data.snippet.code;
-        let formattedCode = code.replace(/\\n/g, "\n");
-        setSnippetCode(formattedCode);
-        setIsLoading(false);
-        Prism.highlightAll();
-      });
+    getSingleSnippet();
+    getComments();
+    
   }, []);
 
   return (
+    <>
     <div
       className="flex items-center flex-col"
       style={{
@@ -154,23 +255,20 @@ export default function Home({ params }) {
         {/* left side */}
 
         <div className="flex justify-center items-center">
-        <div className="bg-gray-300 bg-opacity-0 p-2 rounded-3xl flex justify-center items-center">
-          <details className="dropdown">
-            <summary className="btn btn-sm border-none rounded-2xl bg-gray-300 bg-opacity-10">
+        <div className="bg-gray-300 bg-opacity-0 p-1 rounded-3xl flex justify-center items-center border-none rounded-2xl bg-gray-300 bg-opacity-10">
+       
 
-              <TbArrowBigUp className="text-2xl" />
-              <p>10</p>
-              <TbArrowBigDown className="text-2xl" />
-            </summary>
-            
-          </details>
+              <button><TbArrowBigUp className="text-2xl" /></button>
+              <p className="mx-2">10</p>
+              <button><TbArrowBigDown className="text-2xl" /></button>
+          
         </div>
 
         <div className="bg-gray-300 bg-opacity-0 p-2 rounded-3xl flex justify-center items-center">
-          <details className="dropdown">
+          <details  onClick={()=>document.getElementById('comments').showModal()}  className="dropdown">
             <summary className="btn btn-sm border-none rounded-2xl bg-gray-300 bg-opacity-10">
               <BiComment className="text-2xl" />
-              <p>10</p>
+              <p>{comments.length}</p>
             </summary>
            
           </details>
@@ -184,7 +282,7 @@ export default function Home({ params }) {
             </summary>
             <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2">
               <li>
-                <a>Copy URL</a>
+                <button onClick={copyToClipboard}>Copy URL</button>
               </li>
               <li>
                 <button onClick={handleGenerateEmbedCode}>Embed Code</button>
@@ -203,9 +301,15 @@ export default function Home({ params }) {
 
         
         <div className="bg-gray-300 bg-opacity-0 p-2 rounded-3xl flex justify-center items-center">
-          <details className="dropdown">
+          <details onClick={addToFavourite} className="dropdown">
             <summary className="btn btn-sm border-none rounded-2xl bg-gray-300 bg-opacity-10">
-              <FaRegStar className="text-2xl" />
+              {
+                isFavourite?(
+              <FaStar className="text-2xl" />
+              ):(
+                <FaRegStar className="text-2xl" />
+                )
+              }
               20
             </summary>
         
@@ -256,5 +360,39 @@ export default function Home({ params }) {
         </div>
       )}
     </div>
+    <dialog id="comments" className="modal">
+  <div className="modal-box">
+    <h3 className="my-5 font-bold text-lg">Add New Comment</h3>
+    {/* <p className="py-4">Press ESC key or click the button below to close</p> */}
+     
+ 
+    <div>
+
+<input
+type="text"
+placeholder="Type Comment Here"
+value={comment}
+onChange={e=>setComment(e.target.value)}
+className="mx-5 input input-primary w-full max-w-xs" />
+
+<button onClick={addComment} className='btn btn-primary'>
+<IoSend/>
+</button>
+</div>
+    <h3 className="my-5 font-bold text-lg">Comments ({comments.length})</h3>
+    {
+      comments.map((comment,index)=> {
+        return <CommentCard createdAt={comment.createdAt} body={comment.body} username={comment.author} key={index}/>
+      })
+    }
+    <div className="modal-action">
+      <form method="dialog">
+        {/* if there is a button in form, it will close the modal */}
+        <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+    </>
   );
 }

@@ -6,7 +6,7 @@ import React, { useEffect } from 'react'
 import { toast } from 'react-hot-toast';
 
 function Navbar() {
-  const {Username, SetUsername, isLogin, SetIsLogin} = useUserStore();
+  const {Username, SetUsername, SetUserId, UserId, isLogin, SetIsLogin} = useUserStore();
 
 
   const verificationToken =async () => {
@@ -20,6 +20,7 @@ function Navbar() {
 
     if (res.type == "success") {
       SetIsLogin(true);
+      SetUserId(res.user._id)
       SetUsername(res.user.username);
     }
   }
@@ -46,10 +47,10 @@ function Navbar() {
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
       <li><Link href={"/"}>Home</Link></li>
       <li><Link href={"/explore"}>Explore</Link></li>
-      <li><Link href={"/trending"}>Trending</Link></li> 
+      {/* <li><Link href={"/trending"}>Trending</Link></li>  */}
       <li><Link href={"/categories"}>Categories</Link></li>
       <li><Link href={"/contact"}>Contact</Link></li>
-      <li><Link href={"/contributors"}>Contributors</Link></li>
+      {/* <li><Link href={"/contributors"}>Contributors</Link></li> */}
 
       </ul>
     </div>
@@ -59,10 +60,10 @@ function Navbar() {
     <ul className="menu menu-horizontal px-1">
     <li><Link href={"/"}>Home</Link></li>
       <li><Link href={"/explore"}>Explore</Link></li>
-      <li><Link href={"/trending"}>Trending</Link></li> 
+      {/* <li><Link href={"/trending"}>Trending</Link></li>  */}
       <li><Link href={"/categories"}>Categories</Link></li>
       <li><Link href={"/contact"}>Contact</Link></li>
-      <li><Link href={"/contributors"}>Contributors</Link></li>
+      {/* <li><Link href={"/contributors"}>Contributors</Link></li> */}
     </ul>
   </div>
 
@@ -79,7 +80,7 @@ function Navbar() {
         </div>
       </label>
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-        <li>Hi, {Username}</li>
+        <li className='m-3'>Hi, {Username} {UserId}</li>
         <li>
           <Link href={"/profile"} className="justify-between">
             My Profile

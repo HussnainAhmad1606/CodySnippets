@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html data-theme="custom" lang="en">
       <body className={inter.className}>
-        <Toaster />
+        <Toaster className="z-10" />
         <Navbar />
 
         {children}

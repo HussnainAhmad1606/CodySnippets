@@ -6,8 +6,8 @@ const api = axios.create({
 
 api.interceptors.request.use(
   async (config) => {
-    let token = localStorage.getItem('studymate_token');
-    const refreshToken = localStorage.getItem('studymate_refresh_token');
+    let token = localStorage.getItem('token');
+    const refreshToken = localStorage.getItem('refresh_token');
 
     if (token) {
       const { exp } = JSON.parse(atob(token.split('.')[1]));

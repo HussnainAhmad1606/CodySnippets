@@ -16,7 +16,7 @@ const handler = async (req, res) => {
             const token = signToken({ username: user.username }, process.env.JWT_TOKEN, '5h');
             const refreshToken = signToken({ username: user.username }, process.env.JWT_REFRESH_TOKEN, '7d');
           
-            res.status(200).json({ type: "success", message: "Logged in Sucess", token: token, refreshToken: refreshToken });
+            res.status(200).json({ type: "success", message: "Logged in Sucess", token: token, refreshToken: refreshToken, userId: user._id });
 
         }
         else {

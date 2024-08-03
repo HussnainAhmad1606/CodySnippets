@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useUserStore } from "@/store/store";
 
 function Login() {
-  const {SetIsLogin, SetUsername} = useUserStore();
+  const {SetIsLogin, SetUsername, SetUserId} = useUserStore();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -39,7 +39,8 @@ function Login() {
        
           if (data.type == "success") {
             SetIsLogin(true);
-            SetUsername(username)
+            SetUsername(username);
+            SetUserId(data.userId);
             localStorage.setItem("token", data.token);
             localStorage.setItem("refresh_token", data.refreshToken);
             toast.success(data.message);

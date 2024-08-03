@@ -4,8 +4,7 @@ const { Schema } = mongoose;
 const commentSchema = new Schema({
     author: { type: String },
     body: { type: String },
-    snippetId: { type: String },
-    upvotes: {type: Number}
+    snippetId: { type: String }
 }, { timestamps: true });
 
 mongoose.models = {}
