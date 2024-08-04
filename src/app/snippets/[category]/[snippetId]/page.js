@@ -37,6 +37,8 @@ import "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min";
 import "@/css/prism-theme.css";
 import "@/css/custom-prism-theme.css";
 
+import {  generateChatId, sendMessage, receiveMessages } from "@/utils/utils";
+
 
 // Importing Icons
 import { BsFillPersonFill } from "react-icons/bs";
@@ -57,6 +59,7 @@ import { FaStar } from "react-icons/fa";
 import { useUserStore } from "@/store/store";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import Link from "next/link";
 
 export default function Home({ params }) {
   const [snippet, setSnippet] = useState([]);
@@ -66,11 +69,26 @@ export default function Home({ params }) {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState("");
   const [link, setLink] = useState("");
+  const [authorId, setAuthorId] = useState("");
   const { snippetId } = params;
   const codeRef = useRef(null);
   const [embedCode, setEmbedCode] = useState("");
+  const [chatId, setChatId] = useState("");
+
+
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState({});
 
   const {UserId} = useUserStore();
+
+  useEffect(() => {
+    receiveMessages(chatId, setMessages);
+  }, [chatId]);
+
+  const handleSendMessage = () => {
+    sendMessage(chatId, authorId, UserId, message);
+    setMessage('');
+  };
 
   useEffect(() => {
     if (codeRef.current) {
@@ -88,6 +106,25 @@ export default function Home({ params }) {
       toast.error('Failed to copy!');
     }
   };
+
+  const getAuthorId = async(username) => {
+    console.log("Getting Author Id")
+    const response = await axios.post("/api/users/get-author-id", {
+      username: username
+    })
+
+    if (response.data.type == "success") {
+      setAuthorId(response.data.user._id);
+
+      const ChatId = generateChatId(UserId, response.data.user._id);
+      setChatId(ChatId);
+
+      console.log(response.data);
+    }
+    else {
+      toast.error(response.data.message);
+    }
+  }
 
   const generateEmbedCode = (snippetId) => {
     return `<iframe src="${window.location.origin}/embed/${snippetId}" width="600" height="400"></iframe>`;
@@ -167,6 +204,7 @@ const getSingleSnippet = async() => {
     .then((data) => {
       console.log(data);
       setSnippet(data.snippet);
+      getAuthorId(data.snippet.author);
       setIsFavourite(data.favourite);
       let code = data.snippet.code;
       let formattedCode = code.replace(/\\n/g, "\n");
@@ -329,7 +367,7 @@ const getComments = async() => {
               <div className="stat-value">
                 <BsFillPersonFill />
               </div>
-              <div className="stat-title">{snippet.author}</div>
+              <div className="stat-title">{snippet.author} <Link href={`/chat/${chatId}`}>Chat</Link></div>
             </div>
           </div>
 

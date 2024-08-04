@@ -12,6 +12,7 @@
     "autoprefixer": "10.4.16",
     "axios": "^1.7.3",
     "bcryptjs": "^2.4.3",
+    "firebase": "^10.12.5",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^7.5.4",
     "next": "13.5.4",
