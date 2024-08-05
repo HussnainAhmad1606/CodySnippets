@@ -8,11 +8,11 @@ const SnippetContainer = () => {
     const [isLoading, setIsLoading] = useState(true)
   
     useEffect(() => {
-      fetch(`${process.env.NEXT_PUBLIC_URL}/api/snippets/get-all-snippets`)
+      fetch(`/api/explore`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.snippets)
-        setSnippets(data.snippets)
+        console.log(data.posts)
+        setSnippets(data.posts)
         setIsLoading(false)
       });
     }, [])
