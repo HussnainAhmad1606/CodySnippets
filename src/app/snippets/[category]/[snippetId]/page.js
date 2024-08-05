@@ -37,7 +37,7 @@ import "prismjs/plugins/copy-to-clipboard/prism-copy-to-clipboard.min";
 import "@/css/prism-theme.css";
 import "@/css/custom-prism-theme.css";
 
-import {  generateChatId, sendMessage, receiveMessages } from "@/utils/utils";
+import {  generateChatId } from "@/utils/utils";
 
 
 // Importing Icons
@@ -76,19 +76,10 @@ export default function Home({ params }) {
   const [chatId, setChatId] = useState("");
 
 
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState({});
+;
 
   const {UserId} = useUserStore();
 
-  useEffect(() => {
-    receiveMessages(chatId, setMessages);
-  }, [chatId]);
-
-  const handleSendMessage = () => {
-    sendMessage(chatId, authorId, UserId, message);
-    setMessage('');
-  };
 
   useEffect(() => {
     if (codeRef.current) {
@@ -367,7 +358,8 @@ const getComments = async() => {
               <div className="stat-value">
                 <BsFillPersonFill />
               </div>
-              <div className="stat-title">{snippet.author} <Link href={`/chat/${chatId}`}>Chat</Link></div>
+              <div className="stat-title">{snippet.author} </div>
+              <div className="stat-title"><Link className="btn btn-sm btn-neutral" href={`/chat/${chatId}`}>Chat</Link></div>
             </div>
           </div>
 

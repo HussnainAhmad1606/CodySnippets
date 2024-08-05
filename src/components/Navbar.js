@@ -85,11 +85,15 @@ function Navbar() {
         </div>
       </label>
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
-        <li className='m-3'>Hi, {Username} {UserId}</li>
+        <li className='m-3'>Hi, {Username}</li>
         <li>
-          <Link href={"/profile"} className="justify-between">
-            My Profile
-            <span className="badge">New</span>
+          <Link href={"/my-snippets"} className="justify-between">
+          My Snippets
+          </Link>
+        </li>
+        <li>
+          <Link href={"/saved-snippets"} className="justify-between">
+            Saved Snippets
           </Link>
         </li>
         <li><button onClick={logout}>Logout</button></li>
