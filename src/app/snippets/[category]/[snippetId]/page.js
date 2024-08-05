@@ -60,6 +60,8 @@ import { useUserStore } from "@/store/store";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import Link from "next/link";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function Home({ params }) {
   const [snippet, setSnippet] = useState([]);
@@ -78,7 +80,9 @@ export default function Home({ params }) {
 
 ;
 
-  const {UserId} = useUserStore();
+  const {UserId, setCurrentChatUser} = useUserStore();
+
+  const router = useRouter();
 
 
   useEffect(() => {
@@ -359,7 +363,10 @@ const getComments = async() => {
                 <BsFillPersonFill />
               </div>
               <div className="stat-title">{snippet.author} </div>
-              <div className="stat-title"><Link className="btn btn-sm btn-neutral" href={`/chat/${chatId}`}>Chat</Link></div>
+              <div className="stat-title"><button onClick={()=>{
+                setCurrentChatUser(snippet.author);
+                router.push(`/chat/${chatId}`);
+              }} className="btn btn-sm btn-neutral" >Chat</button></div>
             </div>
           </div>
 

@@ -33,6 +33,9 @@ const ChatList = () => {
   <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
   <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
     {/* Sidebar content here */}
+    {
+      chats.length == 0?<center><h1 className="my-5 text-2xl">No Chats Found</h1></center>:null
+    }
     {chats.map((chat, index) => {
         console.log(chat)
         return (

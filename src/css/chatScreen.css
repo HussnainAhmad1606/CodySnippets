@@ -7,14 +7,15 @@
   }
   
 
-.fixed-chatlist {
+  .fixed-chatlist {
     position: fixed;
-    top: 70px;
+    top: 0;
     left: 0;
-    width: 25%; 
-    height: 100vh; 
-    overflow-y: auto;
-}
+    width: 400px;
+    height: 100vh;
+    overflow-y: hidden; 
+    transition: padding-top 0.3s;
+  }
   
 .scrollable-msgdiv {
     margin-left: 400px; 

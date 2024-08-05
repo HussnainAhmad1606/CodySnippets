@@ -15,6 +15,34 @@ export default function Chat({params}) {
 
   const userId1 = chatId.split('_')[0];
   const userId2 = chatId.split('_')[1];
+
+  const adjustChatListPadding = () => {
+    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+    const chatList = document.querySelector('.fixed-chatlist');
+
+    if (window.scrollY > navbarHeight) {
+      chatList.style.paddingTop = '0px';
+    } else {
+      chatList.style.paddingTop = `${navbarHeight}px`;
+    }
+  };
+
+
+  useEffect(() => {
+    window.addEventListener('scroll', adjustChatListPadding);
+    window.addEventListener('resize', adjustChatListPadding);
+
+    // Initial adjustment
+    adjustChatListPadding();
+
+    return () => {
+      window.removeEventListener('scroll', adjustChatListPadding);
+      window.removeEventListener('resize', adjustChatListPadding);
+    };
+  }, []);
+
+
+  
   useEffect(() => {
     console.log("Setting up listener for chatId:", chatId);
 
@@ -28,6 +56,8 @@ export default function Chat({params}) {
         setMessages([]);
       }
     };
+
+     
 
     // Start listening for messages
     const unsubscribe = receiveMessages(chatId, handleMessages);
