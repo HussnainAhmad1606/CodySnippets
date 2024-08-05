@@ -23,7 +23,7 @@ const SnippetContainer = () => {
     }
 
     {
-        snippets.map(snippet => <CodeSnippet key={snippet._id} title={snippet.title} id={snippet._id} language={snippet.language} author={snippet.author} upvotes={snippet.upvotes} downvotes={snippet.downvotes} createdAt={snippet.createdAt} category={snippet.category} />)
+        snippets.map(snippet => <CodeSnippet key={snippet._id} title={snippet.title} id={snippet._id} language={snippet.language} author={snippet.author} upvotes={snippet.upvotes} commentsCount={snippet.commentsCount} downvotes={snippet.downvotes} createdAt={snippet.createdAt} category={snippet.category} />)
     }
 
        </div>

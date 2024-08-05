@@ -1,24 +1,40 @@
 "use client"
+import { useUserStore } from '@/store/store';
 import api from '@/utils/api';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-hot-toast';
 import { BiComment } from 'react-icons/bi';
 import { FaArrowUp, FaArrowDown, FaStar, FaShare } from "react-icons/fa";
 import { TbArrowBigDown, TbArrowBigUp } from 'react-icons/tb';
+import { BiSolidUpvote } from "react-icons/bi";
 
 const CodeSnippet = (props) => {
-  const deleteSnippet = async (id) => {
-    const res = await api.post("/snippets/delete-snippet", {
-      snippetId: props.id
+  const {Username} = useUserStore();
+  const [totalUpvotes, setTotalUpvotes] = useState(props.upvotes.length);
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    setIsLiked(props.upvotes.includes(Username));
+  }, [])
+  
+
+  const addUpvote = async() => {
+    const res = await api.post("/snippets/add-upvote", {
+      snippetId: props.id,
+      isLiked: isLiked
     })
 
+    toast.success(res.data.message);
+
     if (res.data.type) {
-      toast.success(res.data.message);
-      window.location.reload();
-    }
-    else {
-      toast.error(res.data.message);
+      if (isLiked) {
+        setTotalUpvotes(totalUpvotes - 1);
+      }
+      else {
+        setTotalUpvotes(totalUpvotes + 1);
+      }
+      setIsLiked(!isLiked);
     }
   }
   return (
@@ -38,23 +54,7 @@ const CodeSnippet = (props) => {
         
 
 
-
-        {/* left side */}
-
-        <div className="flex justify-center items-center">
-  
-
-   
-
-
-        <Link href={`/my-snippets/edit?id=${props.id}`} className='btn btn-sm btn-primary'>Edit</Link>
-        <button onClick={deleteSnippet} className='mx-2 btn btn-sm btn-error'>Delete</button>
-    
-
-      
-
-
-        </div>
+       
 
 
 

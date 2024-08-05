@@ -1,5 +1,5 @@
 "use client"
-import CodeSnippet from '@/components/CodeSnippet';
+import SavedCodeSnippets from '@/components/SavedCodeSnippet';
 import { useUserStore } from '@/store/store';
 import api from '@/utils/api';
 import Link from 'next/link';
@@ -45,7 +45,7 @@ function page() {
     }
         
     {
-        snippets.map(snippet => <CodeSnippet key={snippet} title={snippet.snippet.title} id={snippet.snippet._id} language={snippet.snippet.language} author={snippet.snippet.author} upvotes={snippet.snippet.upvotes} downvotes={snippet.snippet.downvotes} createdAt={snippet.snippet.createdAt} category={snippet.snippet.category} />)
+        snippets.map(snippet => <SavedCodeSnippets key={snippet} title={snippet.snippet.title} id={snippet.snippet._id} language={snippet.snippet.language} author={snippet.snippet.author} upvotes={snippet.snippet.upvotes} downvotes={snippet.snippet.downvotes} createdAt={snippet.snippet.createdAt} category={snippet.snippet.category} />)
     }
 
 

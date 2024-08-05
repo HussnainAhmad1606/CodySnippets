@@ -1,11 +1,61 @@
 "use client"
+import { useUserStore } from '@/store/store';
+import api from '@/utils/api';
 import Link from 'next/link';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast';
 import { BiComment } from 'react-icons/bi';
 import { FaArrowUp, FaArrowDown, FaStar, FaShare } from "react-icons/fa";
 import { TbArrowBigDown, TbArrowBigUp } from 'react-icons/tb';
+import { BiSolidUpvote } from "react-icons/bi";
+import { BiSolidDownvote } from "react-icons/bi";
 
 const CodeSnippet = (props) => {
+  const {Username} = useUserStore();
+  const [totalUpvotes, setTotalUpvotes] = useState(props.upvotes.length);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isDisLiked, setIsDisLiked] = useState(false);
+
+  useEffect(() => {
+    setIsLiked(props.upvotes.includes(Username));
+    setIsDisLiked(props.downvotes.includes(Username));
+  }, [])
+  
+
+  const addUpvote = async() => {
+    const res = await api.post("/snippets/add-upvote", {
+      snippetId: props.id,
+      isLiked: isLiked
+    })
+
+    toast.success(res.data.message);
+
+    if (res.data.type) {
+      if (isLiked) {
+        setTotalUpvotes(totalUpvotes - 1);
+      }
+      else {
+        setTotalUpvotes(totalUpvotes + 1);
+      }
+      setIsLiked(!isLiked);
+    }
+  }
+
+
+  const addDownVote = async() => {
+    const res = await api.post("/snippets/add-downvote", {
+      snippetId: props.id,
+      isDisLiked: isDisLiked
+    })
+  
+    toast.success(res.data.message);
+  
+    if (res.data.type == "success") {
+      
+      setIsDisLiked(!isDisLiked);
+    }
+  }
+  
   return (
     <div href={"/explore"} className="card card-side bg-base-100 shadow-xl w-[60vw] mx-auto flex items-center justify-center">
        
@@ -30,9 +80,25 @@ const CodeSnippet = (props) => {
         <div className="bg-gray-300 bg-opacity-0 p-1 rounded-3xl flex justify-center items-center border-none rounded-2xl bg-gray-300 bg-opacity-10">
        
 
-              <button><TbArrowBigUp className="text-2xl" /></button>
-              <p className="mx-2">10</p>
-              <button><TbArrowBigDown className="text-2xl" /></button>
+              <button onClick={addUpvote}>
+                {
+                  isLiked?(
+                    <BiSolidUpvote className="text-2xl" />
+                    ):(
+                      <TbArrowBigUp className="text-2xl" />
+                  )
+                }
+                </button>
+              <p className="mx-2">{totalUpvotes}</p>
+              <button onClick={addDownVote}>
+              {
+                  isDisLiked?(
+                    <BiSolidDownvote className="text-2xl" />
+                  ):(
+                    <TbArrowBigDown className="text-2xl" />
+                  )
+                }
+              </button>
           
         </div>
 
@@ -40,7 +106,7 @@ const CodeSnippet = (props) => {
           <details  onClick={()=>document.getElementById('comments').showModal()}  className="dropdown">
             <summary className="btn btn-sm border-none rounded-2xl bg-gray-300 bg-opacity-10">
               <BiComment className="text-2xl" />
-              <p>{10}</p>
+              <p>{props.commentsCount}</p>
             </summary>
            
           </details>

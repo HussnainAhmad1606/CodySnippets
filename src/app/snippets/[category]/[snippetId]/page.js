@@ -56,6 +56,9 @@ import { FaShare } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 
+import { BiSolidUpvote } from "react-icons/bi";
+import { BiSolidDownvote } from "react-icons/bi";
+
 import { useUserStore } from "@/store/store";
 import { toast } from "react-hot-toast";
 import axios from "axios";
@@ -76,11 +79,16 @@ export default function Home({ params }) {
   const codeRef = useRef(null);
   const [embedCode, setEmbedCode] = useState("");
   const [chatId, setChatId] = useState("");
+  const [isLiked, setIsLiked] = useState(false);
+  const [isDisLiked, setIsDisLiked] = useState(false);
+
+  const [totalUpvotes, setTotalUpvotes] = useState();
+
 
 
 ;
 
-  const {UserId, setCurrentChatUser} = useUserStore();
+  const {UserId, setCurrentChatUser, Username} = useUserStore();
 
   const router = useRouter();
 
@@ -200,13 +208,51 @@ const getSingleSnippet = async() => {
       console.log(data);
       setSnippet(data.snippet);
       getAuthorId(data.snippet.author);
+      setTotalUpvotes(data.snippet.upvotes.length);
       setIsFavourite(data.favourite);
+      setIsLiked(data.snippet.upvotes.includes(Username));
+      setIsDisLiked(data.snippet.downvotes.includes(Username));
+
+
+
       let code = data.snippet.code;
       let formattedCode = code.replace(/\\n/g, "\n");
       setSnippetCode(formattedCode);
       setIsLoading(false);
       Prism.highlightAll();
     });
+}
+
+const addUpvote = async() => {
+  const res = await api.post("/snippets/add-upvote", {
+    snippetId: snippet._id,
+    isLiked: isLiked
+  })
+
+  toast.success(res.data.message);
+
+  if (res.data.type) {
+    if (isLiked) {
+      setTotalUpvotes(totalUpvotes - 1);
+    }
+    else {
+      setTotalUpvotes(totalUpvotes + 1);
+    }
+    setIsLiked(!isLiked);
+  }
+}
+const addDownVote = async() => {
+  const res = await api.post("/snippets/add-downvote", {
+    snippetId: snippet._id,
+    isDisLiked: isDisLiked
+  })
+
+  toast.success(res.data.message);
+
+  if (res.data.type == "success") {
+    
+    setIsDisLiked(!isDisLiked);
+  }
 }
 
 
@@ -291,9 +337,25 @@ const getComments = async() => {
         <div className="bg-gray-300 bg-opacity-0 p-1 rounded-3xl flex justify-center items-center border-none rounded-2xl bg-gray-300 bg-opacity-10">
        
 
-              <button><TbArrowBigUp className="text-2xl" /></button>
-              <p className="mx-2">10</p>
-              <button><TbArrowBigDown className="text-2xl" /></button>
+        <button onClick={addUpvote}>
+                {
+                  isLiked?(
+                    <BiSolidUpvote className="text-2xl" />
+                    ):(
+                      <TbArrowBigUp className="text-2xl" />
+                  )
+                }
+                </button>
+              <p className="mx-2">{totalUpvotes}</p>
+              <button onClick={addDownVote}>
+                {
+                  isDisLiked?(
+                    <BiSolidDownvote className="text-2xl" />
+                  ):(
+                    <TbArrowBigDown className="text-2xl" />
+                  )
+                }
+                </button>
           
         </div>
 

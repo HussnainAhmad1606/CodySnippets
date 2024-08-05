@@ -18,7 +18,7 @@ api.interceptors.request.use(
           try {
             const response = await axios.post('/api/refresh', { refreshToken });
             token = response.data.token;
-            localStorage.setItem('studymate_token', token);
+            localStorage.setItem('token', token);
           } catch (error) {
             console.error('Failed to refresh token:', error);
           }
