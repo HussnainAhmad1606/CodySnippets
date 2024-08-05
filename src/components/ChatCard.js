@@ -30,15 +30,15 @@ function ChatCard({chatId, lastMessage}) {
         router.push(`/chat/${chatId}`);
         setCurrentChatUser(name);
 
-    }} className='flex justify-center items-center hover:bg-gray-500 hover:bg-opacity-10 transition duration-300 ease-in-out'>
+    }} className='my-3 flex items-center hover:bg-gray-500 hover:bg-opacity-10 transition duration-300 ease-in-out'>
         <div className="avatar">
-  <div className="ring-primary ring-offset-base-100 w-16 rounded-full ring ring-offset-2">
+  <div className="ring-primary ring-offset-base-100 rounded-full ring ring-offset-2">
     <img src={`https://ui-avatars.com/api/?name=${name}`}  />
   </div>
 </div>
 <div>
-<div className='flex justify-center items-center'>
-<h2 className='ml-5 text-2xl font-bold '>{name}</h2>
+<div className='w-full flex justify-between'>
+<h2 className='ml-5 text-1xl font-bold '>{name}</h2>
 <p className='ml-2'>{format(new Date(lastMessage.timestamp))}</p>
 </div>
 

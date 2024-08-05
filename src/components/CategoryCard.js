@@ -6,7 +6,7 @@ const CategoryCard = (props) => {
     return (
         <div className="card w-96 bg-base-100 shadow-xl mx-auto">
             <figure className="px-10 pt-10">
-                <img src={`${props.image}`} alt="Shoes" className="rounded-xl w-24" />
+                <img src={`${props.image}`} alt="Shoes" className="rounded-xl" />
             </figure>
             <div className="card-body items-center text-center">
                 <h2 className="card-title">{props.name} Code Snippets</h2>

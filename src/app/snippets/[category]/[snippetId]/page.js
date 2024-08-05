@@ -184,6 +184,7 @@ export default function Home({ params }) {
 
     if (response.data.type == "success") {
       toast.success(response.data.message);
+      setIsFavourite(true);
     }
     else {
       toast.error(response.data.message);
@@ -400,12 +401,18 @@ const getComments = async() => {
             <summary className="btn btn-sm border-none rounded-2xl bg-gray-300 bg-opacity-10">
               {
                 isFavourite?(
+                  <>
               <FaStar className="text-2xl" />
+              <p>Saved</p>
+                  </>
               ):(
+                <>
                 <FaRegStar className="text-2xl" />
+                <p>Save</p>
+                </>
                 )
               }
-              20
+              
             </summary>
         
           </details>

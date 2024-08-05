@@ -9,7 +9,7 @@ const dataHandler = async (req, res) => {
     try {
 
         const { page = 1, limit = 20 } = req.query;
-
+        const totalPosts = await CodeSnippet.countDocuments();
         const codeSnippetsWithCommentsCount = await CodeSnippet.aggregate([
             {
               $addFields: {
@@ -40,9 +40,7 @@ const dataHandler = async (req, res) => {
               $limit: parseInt(limit) // Limit the number of snippets returned
             }
           ]);
-          res.status(200).json({ type: "success", posts: codeSnippetsWithCommentsCount });
-
-
+          res.status(200).json({ totalPosts: totalPosts, type: "success", snippets: codeSnippetsWithCommentsCount });
 
     }
     

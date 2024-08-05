@@ -31,21 +31,25 @@ const ChatList = () => {
 </div>
 <div className="drawer-side">
   <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>
-  <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
+  <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4" style={{
+    width: "350px"
+  }}>
     {/* Sidebar content here */}
     {
       chats.length == 0?<center><h1 className="my-5 text-2xl">No Chats Found</h1></center>:null
     }
+   
     {chats.map((chat, index) => {
         console.log(chat)
         return (
 
-            <>
+            <li>
         
         <ChatCard key={chat.chatId} lastMessage={chat.lastMessage} chatId={chat.chatId}/>
-</>
+</li>
         )
 })}
+
   </ul>
 </div>
 </div>  );
