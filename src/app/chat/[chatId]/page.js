@@ -2,10 +2,12 @@
 import { useState, useEffect } from 'react';
 import { generateChatId, sendMessage, receiveMessages } from '@/utils/utils';
 import { useUserStore } from '@/store/store';
-
+import ChatList from '@/components/ChatList';
+import "@/css/chatScreen.css";
+import CurrentUserChatCard from '@/components/CurrentUserChatCard';
 export default function Chat({params}) {
   const [messages, setMessages] = useState({});
-  const {UserId} = useUserStore();
+  const {UserId, currentChatUser} = useUserStore();
   const [text, setText] = useState('');
 
   const {chatId} = params;
@@ -48,8 +50,13 @@ export default function Chat({params}) {
   };
 
   return (
-    <div>
-      <div id="chat-window">
+    <div className='container flex justify-center items-center'>
+     <div className='fixed-chatlist'>
+    <ChatList />
+  </div>
+    <div className='scrollable-msgdiv' id='msgDiv'>
+      <CurrentUserChatCard username={currentChatUser}/>
+      <div className='' id="chat-window">
         {/* User one: {userId1}
         User two: {userId2}
         chatId: {chatId} */}
@@ -89,12 +96,9 @@ export default function Chat({params}) {
         />
       <button className='btn btn-primary mx-5' onClick={handleSendMessage}>Send</button>
         </div>
-      {/* <button onClick={()=>{
-        receiveMessages(chatId, (messages) => {
-          setMessages(messages);
-        });
-        console.log(messages);
-      }}>messages</button> */}
+     
     </div>
+    </div>
+
   );
 }

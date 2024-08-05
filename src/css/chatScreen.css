@@ -1,0 +1,27 @@
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+  
+
+.fixed-chatlist {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 25%; 
+    height: 100vh; 
+    overflow-y: auto;
+}
+  
+.scrollable-msgdiv {
+    margin-left: 400px; 
+    width: 75%;
+    height: 100vh;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+  

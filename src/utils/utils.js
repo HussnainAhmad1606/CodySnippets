@@ -1,4 +1,4 @@
-import { ref, push, set, onValue, off } from 'firebase/database';
+import { ref, push, set, onValue, off,  query, orderByChild, equalTo  } from 'firebase/database';
 import { database } from '@/firebase/firebase';
 
 export function sendMessage(chatId, sender, receiver, text) {
@@ -31,7 +31,31 @@ export function receiveMessages(chatId, callback) {
     off(messagesRef); // Stop listening to updates
   };
 }
-
+export function receiveUserChats(userId, callback) {
+  const chatsRef = ref(database, 'chats');
+  onValue(chatsRef, (snapshot) => {
+    const allChats = snapshot.val();
+    const userChats = [];
+    for (const chatId in allChats) {
+      const messages = allChats[chatId].messages;
+      let lastMessage = null;
+      let involved = false;
+      for (const messageId in messages) {
+        const message = messages[messageId];
+        if (message.sender === userId || message.receiver === userId) {
+          involved = true;
+          if (!lastMessage || message.timestamp > lastMessage.timestamp) {
+            lastMessage = message;
+          }
+        }
+      }
+      if (involved) {
+        userChats.push({ chatId, lastMessage });
+      }
+    }
+    callback(userChats);
+  });
+}
 export function generateChatId(userId1, userId2) {
   return userId1 < userId2 ? `${userId1}_${userId2}` : `${userId2}_${userId1}`;
 }

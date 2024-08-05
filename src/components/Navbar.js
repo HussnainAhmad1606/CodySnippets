@@ -5,7 +5,8 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { toast } from 'react-hot-toast';
 import { FaSearch } from "react-icons/fa";
-
+import { RiMessageLine } from "react-icons/ri";
+import "@/css/mix.css";
 function Navbar() {
   const {Username, SetUsername, SetUserId, UserId, isLogin, SetIsLogin} = useUserStore();
 
@@ -70,10 +71,13 @@ function Navbar() {
 
   <div className="navbar-end">
 
-   <Link href={"/search"} className='bg-neutral p-3 rounded-xl'><FaSearch className='mx-2 text-2xl'/></Link>
+   <Link href={"/search"} className='bg-neutral p-3 rounded-xl'><FaSearch className=' text-2xl'/></Link>
 
    {
     isLogin?(
+      <>
+   <Link id='chat' href={"/chat"} className='bg-neutral p-3 rounded-xl'><RiMessageLine className='text-2xl'/></Link>
+
       <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost avatar">
         <div className="w-10 rounded-full">
@@ -91,6 +95,7 @@ function Navbar() {
         <li><button onClick={logout}>Logout</button></li>
       </ul>
     </div>
+    </>
     ):(
      <>
     <Link href={"/login"} className="mx-2 btn-primary btn">Login</Link>
