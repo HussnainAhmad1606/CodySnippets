@@ -9,12 +9,15 @@ import { FaArrowUp, FaArrowDown, FaStar, FaShare } from "react-icons/fa";
 import { TbArrowBigDown, TbArrowBigUp } from 'react-icons/tb';
 import { BiSolidUpvote } from "react-icons/bi";
 import { BiSolidDownvote } from "react-icons/bi";
+import { useRouter } from 'next/navigation';
 
 const CodeSnippet = (props) => {
   const {Username} = useUserStore();
   const [totalUpvotes, setTotalUpvotes] = useState(props.upvotes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [isDisLiked, setIsDisLiked] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     setIsLiked(props.upvotes.includes(Username));
@@ -57,16 +60,16 @@ const CodeSnippet = (props) => {
   }
   
   return (
-    <div href={"/explore"} className="card card-side bg-base-100 shadow-xl w-[60vw] mx-auto flex items-center justify-center">
+    <div className="card card-side bg-base-100 shadow-xl w-[60vw] mx-auto flex items-center justify-center">
        
         <div className='flex flex-col justify-center items-center my-8'>
-          <div className='w-full flex justify-between items-center'>
+          <div className='w-[150%] flex justify-evenly items-center'>
             <div className='flex justify-center items-center'>
             <p>Posted by: <span className='font-bold'>{props.author}</span> </p>
             </div>
             <p className='font-thin'>({new Date(props.createdAt).toLocaleString()})</p>
           </div>
-          <Link href={`/snippets/${props.category.toLowerCase().replaceAll(" ", "-")}/${props.id}`} className='text-4xl my-8'>
+          <Link href={`/snippets/${props.category.toLowerCase().replaceAll(" ", "-")}/${props.id}`} className='text-3xl font-bold my-8'>
             {props.title}
           </Link>
           <div className="flex justify-between w-[120%] items-center ">
@@ -103,7 +106,9 @@ const CodeSnippet = (props) => {
         </div>
 
         <div className="bg-gray-300 bg-opacity-0 p-2 rounded-3xl flex justify-center items-center">
-          <details  onClick={()=>document.getElementById('comments').showModal()}  className="dropdown">
+          <details  onClick={()=>
+          router.push(`/snippets/${props.category.toLowerCase().replaceAll(" ", "-")}/${props.id}`)
+          }  className="dropdown">
             <summary className="btn btn-sm border-none rounded-2xl bg-gray-300 bg-opacity-10">
               <BiComment className="text-2xl" />
               <p>{props.commentsCount}</p>

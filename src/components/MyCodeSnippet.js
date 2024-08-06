@@ -31,7 +31,7 @@ const CodeSnippet = (props) => {
             </div>
             <p className='font-thin'>({new Date(props.createdAt).toLocaleString()})</p>
           </div>
-          <Link href={`/snippets/${props.category.toLowerCase().replaceAll(" ", "-")}/${props.id}`} className='text-4xl my-8'>
+          <Link href={`/snippets/${props.category.toLowerCase().replaceAll(" ", "-")}/${props.id}`} className='text-3xl font-bold my-8'>
             {props.title}
           </Link>
           <div className="flex justify-between w-[120%] items-center ">

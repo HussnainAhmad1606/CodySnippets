@@ -11,15 +11,15 @@
     position: fixed;
     top: 0;
     left: 0;
-    width: 400px;
+    width: 20%;
     height: 100vh;
-    overflow-y: hidden; 
+    /* overflow-y: hidden;  */
     transition: padding-top 0.3s;
   }
   
 .scrollable-msgdiv {
     margin-left: 400px; 
-    width: 75%;
+    width: 80%;
     height: 100vh;
     overflow-y: scroll;
     scrollbar-width: none;

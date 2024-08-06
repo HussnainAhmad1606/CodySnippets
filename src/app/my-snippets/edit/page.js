@@ -84,7 +84,8 @@ function page() {
   </div>
   <select value={category} onChange={e=>setCategory(e.target.value)} className="select select-bordered">
     <option value={"Web Development"}>Web Development</option>
-    <option value={"Machine Learning/AI"}>Machine Learning/AI</option>
+    <option value={"Machine Learning"}>Machine Learning</option>
+    <option value={"AI"}>AI</option>
     <option value={"Data Science"}>Data Science</option>
     <option value={"Game Development"} >Game Development</option>
     <option value={"Android Development"}>Android Development</option>
