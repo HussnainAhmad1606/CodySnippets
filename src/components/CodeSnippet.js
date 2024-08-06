@@ -119,20 +119,14 @@ const CodeSnippet = (props) => {
 
 
        
-        <div className="bg-gray-300 bg-opacity-0 p-2 rounded-3xl flex justify-center items-center">
+        <div  onClick={()=>
+          router.push(`/snippets/${props.category.toLowerCase().replaceAll(" ", "-")}/${props.id}`)
+          } className="bg-gray-300 bg-opacity-0 p-2 rounded-3xl flex justify-center items-center">
           <details className="dropdown">
             <summary className="btn btn-sm border-none rounded-2xl bg-gray-300 bg-opacity-10">
               <FaShare className="text-2xl" />
               Share
             </summary>
-            <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2">
-              <li>
-                <button>Copy URL</button>
-              </li>
-              <li>
-                <button>Embed Code</button>
-              </li>
-            </ul>
           </details>
         </div>
     
