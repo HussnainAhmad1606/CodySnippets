@@ -11,7 +11,7 @@ const ChatList = () => {
 
   useEffect(() => {
     receiveUserChats(UserId, (chats) => {
-        console.log(chats)
+        // console.log(chats)
       if (chats) {
         setChats(chats);
       } else {

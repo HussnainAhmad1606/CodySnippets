@@ -18,7 +18,7 @@ function Navbar() {
     })
 
     const res = await req.data;
-    console.log(res)
+    // console.log(res)
 
     if (res.type == "success") {
       SetIsLogin(true);

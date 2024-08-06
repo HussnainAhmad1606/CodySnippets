@@ -12,7 +12,7 @@ function page() {
         setIsLoading(true);
         const req = await api.get("/snippets/get-user-snippets");
         const res = await req.data;
-        console.log(req)
+        // console.log(req)
         setSnippets(res.snippets);
         setIsLoading(false);
     }

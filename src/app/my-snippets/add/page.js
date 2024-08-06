@@ -22,7 +22,7 @@ function page() {
       language: language,
       code: code
     }
-    console.log(data)
+    // console.log(data)
     setIsLoading(true);
     const res = await api.post("/snippets/add-snippet", data);
     if (res.data.type == "success") {

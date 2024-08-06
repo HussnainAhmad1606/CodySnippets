@@ -61,7 +61,7 @@ const EmbedSnippet = ({params}) => {
           })
             .then((response) => response.json())
             .then((data) => {
-              console.log(data.snippet);
+              // console.log(data.snippet);
               setSnippet(data.snippet);
               let code = data.snippet.code;
               let formattedCode = code.replace(/\\n/g, "\n");

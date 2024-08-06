@@ -12,13 +12,13 @@ export default function Home({params}) {
   const finalCategory = category.replace(/-/g, " ");
   const getSnippets = async() => {
     setIsLoading(true);
-    console.log(finalCategory)
+    // console.log(finalCategory)
     const response = await axios.post("/api/snippets/get-category-snippets", {
       category: finalCategory
     })
-    console.log(response)
+    // console.log(response)
     
-    console.log(response.data.snippets)
+    // console.log(response.data.snippets)
     if (response.data.type == 'success') {
       setSnippets(response.data.snippets)
     }

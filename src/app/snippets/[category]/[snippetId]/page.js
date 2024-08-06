@@ -122,7 +122,7 @@ export default function Home({ params }) {
       const ChatId = generateChatId(UserId, response.data.user._id);
       setChatId(ChatId);
 
-      console.log(response.data);
+      // console.log(response.data);
     }
     else {
       toast.error(response.data.message);

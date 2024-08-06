@@ -40,7 +40,7 @@ const SnippetContainer = () => {
       // Increment the page number for the next fetch
       setPage(prevPage => prevPage + 1);
       setIsLoading(false);
-      console.log(filteredNewSnippets)
+      // console.log(filteredNewSnippets)
     }
   
     useEffect(() => {

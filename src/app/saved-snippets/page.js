@@ -12,13 +12,13 @@ function page() {
     const {UserId} = useUserStore();
 
     const getSavedSnippets = async() => {
-        console.log(UserId)
+        // console.log(UserId)
         setIsLoading(true);
         const req = await api.post("/favourites/get-user-favourite-snippets", {
             userId: UserId
         });
        
-        console.log(req)
+        // console.log(req)
         if(req.data.type=="success"){
             setSnippets(req.data.snippets);
         }

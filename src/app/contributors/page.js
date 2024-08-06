@@ -9,7 +9,7 @@ export default function Home() {
     useEffect(() => {
         fetch(`https://api.github.com/repos/HussnainAhmad1606/CodySnippets-Hacktoberfest-2023/contributors`).then((response) => response.json())
         .then((data) => {
-            console.log(data);
+            // console.log(data);
             setContributors(data);
             setIsLoading(false);
         })

@@ -76,7 +76,7 @@ export default function Chat({params}) {
     sendMessage(chatId, UserId, receiver, text);
     // sendMessage(chatId, userId1, userId2, text);
     setText('');
-    console.log(messages)
+    // console.log(messages)
   };
 
   return (

@@ -18,7 +18,7 @@ export default function Home() {
 
     setResults(request.data.results)
     setIsLoading(false);
-    console.log(request)
+    // console.log(request)
   }
   return (
 <div className='min-h-[100vh]'>

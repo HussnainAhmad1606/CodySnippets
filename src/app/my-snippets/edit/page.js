@@ -27,9 +27,9 @@ function page() {
       language: language,
       code: code
     }
-    console.log(data)
+    // console.log(data)
     const res = await api.post("/snippets/update-snippet", data);
-    console.log(res);
+    // console.log(res);
     if (res.data.type == "success") {
       toast.success(res.data.message);
     } else {

@@ -16,7 +16,7 @@ function ChatCard({chatId, lastMessage}) {
         const user = await axios.post('/api/users/get-user-username', {
             id: otherUserId
         })
-        console.log(user);
+        // console.log(user);
         setName(user.data.user.username);
         
     }
